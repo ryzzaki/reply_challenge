@@ -28,8 +28,7 @@ def parse_args(txt):
 
 
 if __name__ == "__main__":
-    path = input("Choose file: ") + '.txt'
-    # obj = ''
+    path = "./inputs/" + input("Choose file: ") + '.txt'
     with open(path, 'r') as str_file:
         obj = parse_args(str_file.read())
         str_file.close()
