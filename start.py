@@ -13,8 +13,29 @@ def parse_args(txt):
         game_grid = game_grid + line + "\n"
         count += 1
 
-    developers = lines[(count + 1):dev_count]
-    managers = lines[(count + dev_count + 2):]
+    developers_list = lines[(count + 1):dev_count]
+    managers_list = lines[(count + dev_count + 2):]
+
+    developers = []
+    managers = []
+
+    for developer in developers_list:
+        temp_arr = developer.split(' ')
+        dev = {
+            "company": temp_arr[0],
+            "bonus": temp_arr[1],
+            "skill_count": temp_arr[2],
+            "skills": temp_arr[3:]
+        }
+        developers.append(dev)
+
+    for manager in managers_list:
+        temp_arr = manager.split(' ')
+        man = {
+            "company": temp_arr[0],
+            "bonus": temp_arr[1],
+        }
+        managers.append(man)
 
     obj = {
         "xy_grid": xy_grid,
@@ -27,9 +48,14 @@ def parse_args(txt):
     return obj
 
 
-if __name__ == "__main__":
-    path = "./inputs/" + input("Choose file: ") + '.txt'
+def optimise(game_obj):
+    pass
+
+
+if __name__ == '__main__':
+    path = './inputs/' + input('Choose file: ') + '.txt'
     with open(path, 'r') as str_file:
         obj = parse_args(str_file.read())
         str_file.close()
     print(obj)
+    optimise(obj)
